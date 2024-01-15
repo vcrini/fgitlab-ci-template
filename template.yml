@@ -11,8 +11,8 @@ include:
 stages:
   - validate
   - test
-  - build
-  - deploy
+  - plan
+  - apply
   - cleanup
 
 fmt:
@@ -23,16 +23,16 @@ validate:
   extends: .terraform:validate
   needs: []
 
-build:
+plan:
   extends: .terraform:build
   environment:
     name: $TF_STATE_NAME
     action: prepare
 
-deploy:
+apply:
   extends: .terraform:deploy
   dependencies:
-    - build
+    - plan
   environment:
     name: $TF_STATE_NAME
     action: start
