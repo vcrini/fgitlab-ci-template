@@ -43,8 +43,8 @@ variables:
       when: never
     - if: $CI_COMMIT_BRANCH # If there's no open merge request, add it to a *branch* pipeline instead.
 
-.terraform:build:
-  stage: build
+.terraform:plan:
+  stage: plan
   script:
     - gitlab-terraform plan
     - gitlab-terraform plan-json
@@ -67,8 +67,8 @@ variables:
       when: never
     - if: $CI_COMMIT_BRANCH # If there's no open merge request, add it to a *branch* pipeline instead.
 
-.terraform:deploy:
-  stage: deploy
+.terraform:apply:
+  stage: apply
   script:
     - gitlab-terraform apply
   resource_group: ${TF_STATE_NAME}

@@ -24,13 +24,13 @@ validate:
   needs: []
 
 plan:
-  extends: .terraform:build
+  extends: .terraform:plan
   environment:
     name: $TF_STATE_NAME
     action: prepare
 
 apply:
-  extends: .terraform:deploy
+  extends: .terraform:apply
   dependencies:
     - plan
   environment:
